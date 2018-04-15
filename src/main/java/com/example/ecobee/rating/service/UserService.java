@@ -2,8 +2,10 @@ package com.example.ecobee.rating.service;
 
 import com.example.ecobee.rating.exception.InvalidInputException;
 import com.example.ecobee.rating.model.User;
+import com.example.ecobee.rating.persistence.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,9 +15,11 @@ public class UserService {
 
     private static Logger log = LoggerFactory.getLogger(UserService.class);
 
+    @Autowired
+    UserRepository userRepository;
+
     public String processData(String data) {
         String result = "";
-        ArrayList<User> userObjects = new ArrayList<User>();
         Boolean flag = Boolean.FALSE;
 
         String[] users = data.split(System.getProperty("line.separator"));
@@ -38,7 +42,7 @@ public class UserService {
 
                 User userObject = new User(userSplitted);
                 log.info("Adding User: " + userObject.toString());
-                userObjects.add(userObject);
+                userRepository.save(userObject);
             } else {
                 log.info("Processing: " + user);
             }
