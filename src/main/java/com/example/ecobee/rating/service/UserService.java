@@ -17,6 +17,8 @@ public class UserService {
     UserRepository userRepository;
 
     public String processData(String data) {
+
+        userRepository.deleteAll();
         String result = "";
         Boolean flag = Boolean.FALSE;
 

@@ -3,10 +3,6 @@ package com.example.ecobee.rating.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -28,6 +24,9 @@ public class User {
         province = address[1];
         city = address [2];
         this.rValue = rValue;
+    }
+
+    public User() {
     }
 
     public Long getId() {

@@ -23,6 +23,8 @@ public class RatingController {
     public ResponseEntity postData(HttpEntity<String> httpEntity) {
     log.info("In RatingController Post Data");
 
+    log.info(httpEntity.getBody());
+
     String data = "\"John Doe\" \"Canada/Ontario/Toronto\" 1.5\n" +
             "\"Samanta Smith\" \"Canada/Ontario/London\" 3.7\n" +
             "\"Adam Xin\" \"Canada/BritishColumbia/Vancouver\" 2.110\n" +
