@@ -11,18 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserServiceTest {
-
-    private static Logger log = LoggerFactory.getLogger(UserServiceTest.class);
 
     @Autowired
     UserService userService;
 
     @Test
     public void testNoLastName() {
-        String data = "\"John\" \"Canada/Ontario/Toronto\" 1.5\n";
+        ArrayList<String> data = new ArrayList<>();
+        data.add("\"John\" \"Canada/Ontario/Toronto\" 1.5\n");
         String result = userService.processData(data);
         Assert.assertEquals(ErrorMessage.NameError, result);
     }

@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class UserService {
 
@@ -16,13 +18,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public String processData(String data) {
+    public String processData(ArrayList<String> users) {
 
         userRepository.deleteAll();
         String result = "";
         Boolean flag = Boolean.FALSE;
-
-        String[] users = data.split(System.getProperty("line.separator"));
 
         for (String user : users) {
 
