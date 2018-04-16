@@ -74,20 +74,13 @@ public class UserServiceTest {
         Assert.assertEquals(ErrorMessage.RValueRangeError, result);
     }
 
-//    @Test
-//    public void testQueryError() {
-//        ArrayList<String> data = new ArrayList<>();
-//        data.add("\"John Doe\" \"Canada/Ontario/Toronto\" 1.5\n" +
-//                "\"Samanta Smith\" \"Canada/Ontario/London\" 3.7\n" +
-//                "\"Adam Xin\" \"Canada/British Columbia/Vancouver\" 2.110\n" +
-//                "\"Monica Taylor\" \"Canada/Ontario/Toronto\" 2.110\n" +
-//                "\"Alicia Yazzie\" \"US/Arizona/Phoenix\" 5.532\n" +
-//                "\"Mohammed Zadeh\" \"Canada/Ontario/Toronto\" 1.43\n" +
-//                "\n" +
-//                "\"John Doe\"\n" +
-//                "\"John Doe\" \"Canada/Ontario\"\n" +
-//                "\"Alicia Yazzie\" \"US/Arizona\"");
-//        String result = userService.processData(data);
-//        Assert.assertEquals(ErrorMessage.AddressQueryError, result);
-//    }
+    @Test
+    public void testQueryError() {
+        ArrayList<String> data = new ArrayList<>();
+        data.add("\"John Doe\" \"Canada/Ontario/Toronto\" 1.5\n");
+        data.add("\n");
+        data.add("\"John Doe\"\n");
+        String result = userService.processData(data);
+        Assert.assertEquals(ErrorMessage.AddressQueryError, result);
+    }
 }

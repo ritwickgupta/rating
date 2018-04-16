@@ -6,10 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 @SpringBootApplication
 public class RatingApplication {
@@ -22,18 +24,16 @@ public class RatingApplication {
 		ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(RatingApplication.class, args);
 		log.info("Rating Application Started. Enter Input Below:\n");
 
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		ArrayList<String> data = new ArrayList<>();
-		String temp;
 
-		while ((temp = in.readLine()) != null) {
+		Scanner scanner = new Scanner(System.in);
+		while (scanner.hasNextLine()) {
+			String temp = scanner.nextLine();
 			data.add(temp);
 			log.info(data.toString());
 		}
-
+		scanner.close();
 		UserService userService = configurableApplicationContext.getBean(UserService.class);
-
-		log.info("Sending data: " + data);
 		System.out.println(userService.processData(data));
 	}
 }
