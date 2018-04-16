@@ -26,13 +26,9 @@ public class RatingApplication {
 		ArrayList<String> data = new ArrayList<>();
 		String temp;
 
-		int i=0;
 		while ((temp = in.readLine()) != null) {
 			data.add(temp);
-			i++;
-			if (i==10) {
-				break;
-			}
+			log.info(data.toString());
 		}
 
 		UserService userService = configurableApplicationContext.getBean(UserService.class);
