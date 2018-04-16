@@ -14,30 +14,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-
-    @NotNull
-    @Size(min=1, message="FirstName should have atleast 1 character")
     private String firstName;
-
-    @NotNull
-    @Size(min=1, message="LastName should have atleast 1 character")
     private String lastName;
-
-    @NotNull
-    @Size(min=1, message="Country should have atleast 1 character")
     private String country;
-
-    @NotNull
-    @Size(min=1, message="Province should have atleast 1 character")
     private String province;
-
-    @NotNull
-    @Size(min=1, message="City should have atleast 1 character")
     private String city;
-
-    @NotNull
-    @DecimalMin("0.0")
-    @DecimalMax("50.0")
     private Double rValue;
 
     public User(String[] name, String[] address, Double rValue) {
