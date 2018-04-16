@@ -13,6 +13,8 @@ public class RatingApplication {
 
 		log.info("Starting Rating Application");
 		SpringApplication.run(RatingApplication.class, args);
-		log.info("Rating Application Started");
+
+
+
 	}
 }

@@ -1,6 +1,6 @@
 package com.example.ecobee.rating.service;
 
-import com.example.ecobee.rating.exception.InvalidInputException;
+import com.example.ecobee.rating.Util.ErrorMessage;
 import com.example.ecobee.rating.model.User;
 import com.example.ecobee.rating.persistence.UserRepository;
 import org.slf4j.Logger;
@@ -39,13 +39,13 @@ public class UserService {
             String[] addressSplitted = address.split("/");
 
             if (nameSplitted.length != 2) {
-                throw new InvalidInputException("Name should be 'Firstname Lastname'");
+                return ErrorMessage.NameError;
             }
 
             if (flag == Boolean.FALSE) {
 
                 if (addressSplitted.length != 3) {
-                    throw new InvalidInputException("Address should be 'Country/Province/City'");
+                    return ErrorMessage.AddressError;
                 }
 
                 String rValue = user.substring(user.indexOf(" ", position) + 1, user.length());
@@ -53,11 +53,11 @@ public class UserService {
                 try {
                     rValueDouble = Double.parseDouble(rValue);
                 } catch (Exception e) {
-                    throw new InvalidInputException("R-Value cannot be parsed");
+                    return ErrorMessage.RValueError;
                 }
 
                 if(rValueDouble > 50 || rValueDouble < 0.0) {
-                    throw new InvalidInputException("R-Value must be between 0 and 50");
+                    return ErrorMessage.RValueRangeError;
                 }
 
                 User userObject = new User(nameSplitted, addressSplitted, rValueDouble);
@@ -67,7 +67,7 @@ public class UserService {
                 log.info("Processing: " + user);
                 Integer countBetter, totalCount;
                 if (addressSplitted.length < 1 || addressSplitted.length > 3) {
-                    throw new InvalidInputException("Address in Query is incorrect");
+                    return ErrorMessage.AddressQueryError;
                 }
 
                 if(addressSplitted.length == 1) {
